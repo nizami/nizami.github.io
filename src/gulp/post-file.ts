@@ -1,13 +1,16 @@
 import marked from 'marked';
-import mustache from 'mustache';
 import Vinyl from 'Vinyl';
+import { PostLayout } from './post-layout';
 
 export class PostFile {
-  constructor(private file: Vinyl, private postLayout: any) {}
+  constructor(private file: Vinyl) {}
 
-  toHtml() {
+  toHtml(): string {
     const markdown = this.file.contents.toString();
-    const content = marked(markdown.replace(/#.+/, ''));
+    const content = marked(
+      markdown.replace(/#.+/, '').replace(/\ntags:.+/m, '')
+    );
+    const [, tags] = markdown.match(/\ntags:(.+)/);
     const [, title] = markdown.match(/#\s+(.+)/);
     const [, dateStr, name] = [
       ...this.file.stem.match(/(\d{4}-\d{2}-\d{2})-(.+)/),
@@ -17,15 +20,19 @@ export class PostFile {
       month: 'short',
       day: 'numeric',
     });
-    return mustache.render(this.postLayout, {
+
+    const data = {
       content,
       date,
       name,
       title,
-    });
+      tags: tags.split(',').map((x) => x.trim()),
+    };
+
+    return new PostLayout(content, data).rendered();
   }
 
-  toBuffer() {
+  toBuffer(): Buffer {
     return Buffer.from(this.toHtml());
   }
 }

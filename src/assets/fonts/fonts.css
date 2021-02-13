@@ -3,5 +3,13 @@
   font-style: normal;
   font-weight: 400;
   font-display: swap;
-  src: url(SourceCodePro-Regular.ttf) format('woff2');
+  src: url(SourceCodePro-Regular.ttf) format('truetype');
+}
+
+@font-face {
+  font-family: 'Raleway';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url(Jura-Light.ttf) format('truetype');
 }

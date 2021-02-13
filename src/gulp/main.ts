@@ -1,10 +1,9 @@
 import del from 'delete';
-import fs from 'fs';
 import { dest, series, src, watch } from 'gulp';
 import gls from 'gulp-live-server';
 import rename from 'gulp-rename';
-import mustache from 'mustache';
 import through from 'through2';
+import { DefaultLayout } from './default-layout';
 import { PostFile } from './post-file';
 
 const postsGlob = ['src/posts/*.md'];
@@ -24,21 +23,11 @@ function assets() {
     .pipe(dest('dist'));
 }
 
-function htmlLayouts() {
-  const defaultLayout = fs.readFileSync('src/layouts/default.html').toString();
-  const postLayout = mustache.render(defaultLayout, {
-    content: fs.readFileSync('src/layouts/post.html').toString(),
-  });
-
-  return { defaultLayout, postLayout };
-}
-
 function posts() {
-  const layouts = htmlLayouts();
   return src(postsGlob)
     .pipe(
       through.obj(function (file, _, cb) {
-        file.contents = new PostFile(file, layouts.postLayout).toBuffer();
+        file.contents = new PostFile(file).toBuffer();
         cb(null, file);
       })
     )
@@ -47,13 +36,10 @@ function posts() {
 }
 
 function pages() {
-  const layouts = htmlLayouts();
   return src(pagesGlob)
     .pipe(
       through.obj(function (file, _, cb) {
-        const output = mustache.render(layouts.defaultLayout, {
-          content: file.contents.toString(),
-        });
+        const output = new DefaultLayout(file.contents.toString()).rendered();
         file.contents = Buffer.from(output);
         cb(null, file);
       })
@@ -64,7 +50,7 @@ function pages() {
 export default function () {
   watch(
     'src/**',
-    { ignoreInitial: false, delay: 1000 },
+    { ignoreInitial: false, delay: 200 },
     series(clean, assets, posts, pages)
   );
   watch('src/**', function (file) {
