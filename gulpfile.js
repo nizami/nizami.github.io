@@ -7,35 +7,40 @@ const del = require('delete');
 const fs = require('fs');
 const mustache = require('mustache');
 
-const layoutTemplate = fs
-  .readFileSync('./src/templates/layout.html')
-  .toString();
-const pagesGlob = ['src/posts/*.md', 'src/*.html'];
+const postsGlob = ['src/posts/*.md'];
+const pagesGlob = ['src/*.html'];
+const assetsGlob = ['src/assets/**/*.*'];
 
 function clean(cb) {
-  del(['dist'], cb);
+  return del(['dist'], cb);
 }
 
-function build() {
-  return src(pagesGlob)
-    .pipe(
-      gulpif(
-        (x) => x.extname === '.md',
-        through.obj(function (file, _, cb) {
-          if (file.isBuffer()) {
-            file.contents = Buffer.from(marked(file.contents.toString()));
-          }
-          cb(null, file);
-        })
-      )
-    )
+function assets() {
+  return src(assetsGlob)
+    .pipe(rename({ dirname: 'assets' }))
+    .pipe(dest('dist'));
+}
+
+function htmlLayouts() {
+  const defaultLayout = fs
+    .readFileSync('./src/layouts/default.html')
+    .toString();
+  const postLayout = mustache.render(defaultLayout, {
+    content: fs.readFileSync('./src/layouts/post.html').toString(),
+  });
+
+  return { defaultLayout, postLayout };
+}
+
+function posts() {
+  const layouts = htmlLayouts();
+  return src(postsGlob)
     .pipe(
       through.obj(function (file, _, cb) {
         if (file.isBuffer()) {
-          const view = {
-            content: file.contents.toString(),
-          };
-          const output = mustache.render(layoutTemplate, view);
+          const output = mustache.render(layouts.postLayout, {
+            content: marked(file.contents.toString()),
+          });
           file.contents = Buffer.from(output);
         }
         cb(null, file);
@@ -45,6 +50,27 @@ function build() {
     .pipe(dest('dist'));
 }
 
+function pages() {
+  const layouts = htmlLayouts();
+  return src(pagesGlob)
+    .pipe(
+      through.obj(function (file, _, cb) {
+        if (file.isBuffer()) {
+          const output = mustache.render(layouts.defaultLayout, {
+            content: file.contents.toString(),
+          });
+          file.contents = Buffer.from(output);
+        }
+        cb(null, file);
+      })
+    )
+    .pipe(dest('dist'));
+}
+
 exports.default = function () {
-  watch(pagesGlob, { ignoreInitial: false }, series(clean, build));
+  watch(
+    'src/**',
+    { ignoreInitial: false },
+    series(clean, assets, posts, pages)
+  );
 };
