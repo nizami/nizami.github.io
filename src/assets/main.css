@@ -1,16 +1,27 @@
 :root {
   --text-color: white;
+
+  --bg-color: #2d2d2d;
+  --bg-color-opacity: #2d2d2d20;
 }
 
 body {
-  background: #2d2d2d;
+  background: var(--bg-color);
   color: var(--text-color);
+  font-size: 20px;
 }
 
-code[class*='language-'],
 pre[class*='language-'] {
   font-family: 'Source Code Pro';
   background: #000000;
   box-shadow: 0 6px 12px #121212;
   font-size: 16px;
+}
+
+footer {
+  height: 50px;
+  background: var(--bg-color-opacity);
+  position: sticky;
+  bottom: 0;
+  backdrop-filter: blur(12px);
 }

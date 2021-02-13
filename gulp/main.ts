@@ -7,12 +7,11 @@ import mustache from 'mustache';
 import through from 'through2';
 import { PostFile } from './post-file';
 
-const postsGlob = ['../src/posts/*.md'];
-const pagesGlob = ['../src/*.html'];
-const assetsGlob = ['../src/assets/**/*.*'];
+const postsGlob = ['src/posts/*.md'];
+const pagesGlob = ['src/*.html'];
+const assetsGlob = ['src/assets/**/*.*'];
 
 var server = gls.static('dist', 3000);
-
 server.start();
 
 function clean(cb) {
@@ -26,11 +25,9 @@ function assets() {
 }
 
 function htmlLayouts() {
-  const defaultLayout = fs
-    .readFileSync('../src/layouts/default.html')
-    .toString();
+  const defaultLayout = fs.readFileSync('src/layouts/default.html').toString();
   const postLayout = mustache.render(defaultLayout, {
-    content: fs.readFileSync('../src/layouts/post.html').toString(),
+    content: fs.readFileSync('src/layouts/post.html').toString(),
   });
 
   return { defaultLayout, postLayout };
@@ -41,7 +38,7 @@ function posts() {
   return src(postsGlob)
     .pipe(
       through.obj(function (file, _, cb) {
-        file.contents = new PostFile(file, layouts).toBuffer();
+        file.contents = new PostFile(file, layouts.postLayout).toBuffer();
         cb(null, file);
       })
     )
@@ -64,13 +61,13 @@ function pages() {
     .pipe(dest('dist'));
 }
 
-exports.default = function () {
+export default function () {
   watch(
-    '../src/**',
+    'src/**',
     { ignoreInitial: false, delay: 1000 },
     series(clean, assets, posts, pages)
   );
-  watch('../src/**', function (file) {
+  watch('src/**', function (file) {
     server.notify.apply(server, [file]);
   });
-};
+}
