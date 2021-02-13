@@ -11,5 +11,6 @@ code[class*='language-'],
 pre[class*='language-'] {
   font-family: 'Source Code Pro';
   background: #000000;
+  box-shadow: 0 6px 12px #121212;
   font-size: 16px;
 }

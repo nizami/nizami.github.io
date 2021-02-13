@@ -6,10 +6,15 @@ const marked = require('marked');
 const del = require('delete');
 const fs = require('fs');
 const mustache = require('mustache');
+var gls = require('gulp-live-server');
 
 const postsGlob = ['src/posts/*.md'];
 const pagesGlob = ['src/*.html'];
 const assetsGlob = ['src/assets/**/*.*'];
+
+var server = gls.static('dist', 3000);
+
+server.start();
 
 function clean(cb) {
   return del(['dist'], cb);
@@ -70,7 +75,10 @@ function pages() {
 exports.default = function () {
   watch(
     'src/**',
-    { ignoreInitial: false },
+    { ignoreInitial: false, delay: 1000 },
     series(clean, assets, posts, pages)
   );
+  watch('src/**', function (file) {
+    server.notify.apply(server, [file]);
+  });
 };
