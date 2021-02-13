@@ -1,16 +1,27 @@
 {
-  "name": "chalk",
+  "name": "nizami.github.io",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
   "scripts": {
-    "setup": "bin/setup",
-    "local": "bundle exec jekyll serve --drafts",
-    "publish": "bin/deploy"
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "dependencies": {
-    "jquery": "^3.2.1",
-    "npm": "^6.0.1",
-    "retinajs": "^2.1.1",
-    "svgxuse": "^1.2.4",
-    "webfontloader": "^1.6.28",
-    "zooming": "^2.0.0"
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nizami/nizami.github.io.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/nizami/nizami.github.io/issues"
+  },
+  "homepage": "https://github.com/nizami/nizami.github.io#readme",
+  "devDependencies": {
+    "@types/marked": "^1.2.2",
+    "@types/webpack": "^4.41.26",
+    "marked": "^2.0.0",
+    "webpack": "^5.21.2",
+    "webpack-cli": "^4.5.0"
   }
 }
