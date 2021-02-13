@@ -5,9 +5,6 @@
   --bg-color-opacity: #22283120;
 }
 
-/**
-    * Links
-    */
 a {
   color: salmon;
   text-decoration: none;
@@ -18,16 +15,7 @@ a:visited {
 a:hover {
   text-decoration: underline;
 }
-.social-media-list a:hover {
-  text-decoration: none;
-}
-.social-media-list a:hover .username {
-  text-decoration: underline;
-}
 
-/**
-    * Blockquotes
-    */
 blockquote {
   color: #828282;
   border-left: 4px solid #e8e8e8;
@@ -42,7 +30,8 @@ blockquote > :last-child {
 
 .wrapper {
   max-width: 800px;
-  margin: 0 auto;
+  margin-left: auto;
+  margin-right: auto;
   padding-right: 15px;
   padding-left: 15px;
 }
@@ -51,33 +40,11 @@ blockquote > :last-child {
   width: 16px;
   height: 16px;
   fill: #828282;
-  padding-right: 10px;
-  transform: scale(1.5);
-  padding: 0 8px;
 }
 
-/**
-    * Page content
-    */
 .page-content {
   padding: 30px 0;
   flex: 1;
-}
-
-.page-heading {
-  font-size: 32px;
-}
-
-.post-list-heading {
-  font-size: 28px;
-}
-
-.post-list {
-  margin-left: 0;
-  list-style: none;
-}
-.post-list > li {
-  margin-bottom: 30px;
 }
 
 .post-meta {
@@ -86,22 +53,14 @@ blockquote > :last-child {
 }
 
 .post-meta a {
-  /* border: solid 1px #535353;
-  border-radius: 4px; */
+  border: solid 1px #535353;
+  border-radius: 4px;
   padding: 0px 4px 2px;
   line-height: 1;
   display: inline-block;
   color: #885853;
 }
 
-.post-link {
-  display: block;
-  font-size: 24px;
-}
-
-/**
-    * Posts
-    */
 .post-header {
   margin-bottom: 30px;
 }
@@ -145,7 +104,7 @@ blockquote > :last-child {
   }
 }
 
-footer {
+/* footer {
   height: 50px;
   background: var(--bg-color-opacity);
   position: sticky;
@@ -159,15 +118,14 @@ footer {
 footer a {
   display: inline-block;
   margin: 0 30px;
-}
+} */
 
 body {
   background: var(--bg-color);
   color: var(--text-color);
   font-size: 20px;
 }
-h1,
-footer {
+h1 {
   font-family: 'Accent Font';
 }
 
@@ -181,16 +139,32 @@ pre[class*='language-'] {
   font-size: 16px;
 }
 
-nav {
+nav > div {
+  display: flex;
+  flex-grow: 1;
+  flex-grow: 1;
   height: 100px;
   margin-top: 50px;
   display: flex;
   align-items: center;
-}
-nav > div {
-  display: flex;
-  flex-grow: 1;
+  border-bottom: solid 1px #303944;
 }
 nav div > div {
   flex-grow: 1;
+}
+
+nav img {
+  border-radius: 50%;
+}
+nav i {
+  display: block;
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: #303a44;
+}
+
+nav a,
+nav i {
+  margin-left: 12px;
 }
