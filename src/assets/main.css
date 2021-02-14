@@ -185,20 +185,19 @@ nav > div > div ~ a:hover {
   transition-property: border-radius, border-color;
 }
 
-article a {
+article a,
+a.text-link {
   padding: 2px 4px;
   border: solid 1px transparent;
   transition-duration: 0.2s;
   transition-property: none;
 }
 
-article a:hover {
+article a:hover,
+a.text-link:hover {
   transition-property: all;
   text-decoration: none;
   padding-bottom: 4px;
-  /* border-top: 2px solid salmon; */
-  /* border-bottom: 2px solid salmon; */
   border-bottom: solid 1px;
-  /* color: black; */
   background-color: #fa80721c;
 }

@@ -51,6 +51,7 @@ function posts() {
 function pages() {
   const postMetas = glob
     .sync('src/posts/**/*.md')
+    .sort()
     .map(
       (x) =>
         new Vinyl({
