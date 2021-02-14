@@ -8,7 +8,7 @@ export class PostFile {
   toHtml(): string {
     const markdown = this.file.contents.toString();
     const content = marked(
-      markdown.replace(/#.+/, '').replace(/\ntags:.+/m, '')
+      markdown.replace(/#.+\n/, '').replace(/^tags:.+\n/m, '')
     );
     const [, tags] = markdown.match(/\ntags:(.+)/);
     const [, title] = markdown.match(/#\s+(.+)/);
@@ -32,16 +32,32 @@ export class PostFile {
     return new PostLayout(content, data).rendered();
   }
 
-  metadata(): { link: string; title: string; paragraph: string } {
+  metadata(): { link: string; date: string; title: string; paragraph: string } {
     const markdown = this.file.contents.toString();
+
     const [, title] = markdown.match(/#\s+(.+)/);
     const [, year, month, day, name] = this.file.stem.match(
       /(\d{4})-(\d{2})-(\d{2})-(.+)/
     );
+
+    const paragraph = marked(
+      markdown
+        .replace(/#.+\n/, '')
+        .replace(/^tags:.+\n/m, '')
+        .trim()
+        .split('\n')[0]
+    );
+    const [, dateStr] = [...this.file.stem.match(/(\d{4}-\d{2}-\d{2})-(.+)/)];
+    const date = new Date(dateStr).toLocaleDateString('en-US', {
+      year: 'numeric',
+      month: 'short',
+      day: 'numeric',
+    });
     return {
       link: `/${year}/${month}/${day}/${name}.html`,
       title,
-      paragraph: 'lorem  sdf',
+      date,
+      paragraph: paragraph,
     };
   }
 

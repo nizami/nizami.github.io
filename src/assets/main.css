@@ -142,6 +142,7 @@ pre[class*='language-'] {
 nav > div {
   height: 100px;
   margin-top: 100px;
+  margin-bottom: 100px;
   display: flex;
   align-items: center;
   border-bottom: solid 1px #303944;

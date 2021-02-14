@@ -1,67 +1,30 @@
-<nav>
-  <div class="wrapper">
-    <a href="/about.html" title="About me"> Home </a>
-    <div></div>
-
-    <a href="https://github.com/nizami" title="GitHub">
-      <svg class="svg-icon">
-        <use xlink:href="/assets/minima-social-icons.svg#github"></use>
-      </svg>
-    </a>
-    <i></i>
-    <a href="https://www.linkedin.com/in/nizami-dev" title="LinkedIn">
-      <svg class="svg-icon">
-        <use xlink:href="/assets/minima-social-icons.svg#linkedin"></use>
-      </svg>
-    </a>
-    <i></i>
-    <a href="/feed.xml" title="RSS">
-      <svg class="svg-icon">
-        <use xlink:href="/assets/minima-social-icons.svg#rss"></use>
-      </svg>
-    </a>
-    <i></i>
-    <a href="/about.html" title="About me">
-      <img
-        src="https://avatars.githubusercontent.com/u/9976489?s=128"
-        alt="Me"
-      />
-    </a>
-  </div>
-</nav>
-<main class="page-content" aria-label="Content">
-  <div class="wrapper">
-    <article
-      class="post h-entry"
-      itemscope
-      itemtype="http://schema.org/BlogPosting"
+<article
+  class="post h-entry"
+  itemscope
+  itemtype="http://schema.org/BlogPosting"
+>
+  <header class="post-header">
+    <h1 class="post-title p-name" itemprop="name headline">{{title}}</h1>
+    <p class="post-meta">
+      <time
+        class="dt-published"
+        datetime="2021-02-13T06:26:15+03:00"
+        itemprop="datePublished"
+        >{{date}}
+        <!-- Feb 13, 2021 -->
+      </time>
+      <!-- {{#tags}}
+    <a title="See all posts with tag '{{.}}'" href="/tag/{{.}}.html"
+      >{{.}}</a
     >
-      <header class="post-header">
-        <h1 class="post-title p-name" itemprop="name headline">{{title}}</h1>
-        <p class="post-meta">
-          <time
-            class="dt-published"
-            datetime="2021-02-13T06:26:15+03:00"
-            itemprop="datePublished"
-            >{{date}}
-            <!-- Feb 13, 2021 -->
-          </time>
-          <!-- {{#tags}}
-          <a title="See all posts with tag '{{.}}'" href="/tag/{{.}}.html"
-            >{{.}}</a
-          >
-          {{/tags}} -->
-        </p>
-      </header>
+    {{/tags}} -->
+    </p>
+  </header>
 
-      <div class="post-content e-content" itemprop="articleBody">
-        {{{content}}}
-      </div>
-      <a
-        class="u-url"
-        href="/my_blog/update/2021/02/13/welcome-to-my_blog.html"
-        hidden
-      ></a>
-    </article>
-  </div>
-</main>
+  <div class="post-content e-content" itemprop="articleBody">{{{content}}}</div>
+  <a
+    class="u-url"
+    href="/my_blog/update/2021/02/13/welcome-to-my_blog.html"
+    hidden
+  ></a>
+</article>
