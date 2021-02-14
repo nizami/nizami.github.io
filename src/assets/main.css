@@ -1,31 +1,7 @@
-:root {
-  --text-color: white;
-
-  --bg-color: #222831;
-  --bg-color-opacity: #22283120;
-}
-
-a {
-  color: salmon;
-  text-decoration: none;
-}
-a:visited {
-  color: salmon;
-}
+a,
 a:hover {
-  text-decoration: underline;
-}
-
-blockquote {
-  color: #828282;
-  border-left: 4px solid #e8e8e8;
-  padding-left: 15px;
-  font-size: 18px;
-  letter-spacing: -1px;
-  font-style: italic;
-}
-blockquote > :last-child {
-  margin-bottom: 0;
+  text-decoration: none;
+  color: crimson;
 }
 
 .wrapper {
@@ -70,11 +46,6 @@ blockquote > :last-child {
   letter-spacing: -1px;
   line-height: 1;
 }
-@media screen and (max-width: 800px) {
-  .post-title {
-    font-size: 36px;
-  }
-}
 
 .post-content {
   margin-bottom: 30px;
@@ -82,51 +53,9 @@ blockquote > :last-child {
 .post-content h2 {
   font-size: 32px;
 }
-@media screen and (max-width: 800px) {
-  .post-content h2 {
-    font-size: 28px;
-  }
-}
-.post-content h3 {
-  font-size: 26px;
-}
-@media screen and (max-width: 800px) {
-  .post-content h3 {
-    font-size: 22px;
-  }
-}
-.post-content h4 {
-  font-size: 20px;
-}
-@media screen and (max-width: 800px) {
-  .post-content h4 {
-    font-size: 18px;
-  }
-}
 
-/* footer {
-  height: 50px;
-  background: var(--bg-color-opacity);
-  position: sticky;
-  bottom: 0;
-  backdrop-filter: blur(12px);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-footer a {
-  display: inline-block;
-  margin: 0 30px;
-} */
-
-body {
-  background: var(--bg-color);
-  color: var(--text-color);
-  font-size: 20px;
-}
 h1 {
-  font-family: 'Accent Font';
+  font-family: 'Jura Light';
 }
 
 code[class*='language-'] {
@@ -144,7 +73,7 @@ nav > div {
   margin-bottom: 100px;
   display: flex;
   align-items: center;
-  border-bottom: solid 1px #303944;
+  border-bottom: solid 1px #8080802b;
 }
 nav div > div {
   flex-grow: 1;
@@ -172,8 +101,7 @@ nav > div > div ~ a.about-link {
 nav > div > div ~ a {
   border: solid 1px transparent;
   padding: 2px 8px;
-  transition-duration: 0.2s;
-  transition-property: none;
+  transition: 0.2s;
 }
 
 nav > div > div ~ a.about-link {
@@ -182,22 +110,18 @@ nav > div > div ~ a.about-link {
 nav > div > div ~ a:hover {
   border: solid 1px;
   border-radius: 50%;
-  transition-property: border-radius, border-color;
 }
 
 article a,
 a.text-link {
   padding: 2px 4px;
+  padding-bottom: 4px;
   border: solid 1px transparent;
-  transition-duration: 0.2s;
-  transition-property: none;
+  transition: 0.2s;
 }
 
 article a:hover,
 a.text-link:hover {
-  transition-property: all;
-  text-decoration: none;
-  padding-bottom: 4px;
   border-bottom: solid 1px;
   background-color: #fa80721c;
 }
@@ -209,4 +133,9 @@ h1 a {
 
 .post-meta > * {
   margin-right: 30px;
+}
+
+body {
+  font-size: 20px;
+  transition: 0.2s;
 }

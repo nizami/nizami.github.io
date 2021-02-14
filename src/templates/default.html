@@ -3,10 +3,13 @@
   <%- template('head')%>
   <!--  -->
   <%- template('nav'); %>
-  <body>
+  <body style="opacity: 0">
     <main class="page-content" aria-label="Content">
       <div class="wrapper"><%- content %></div>
     </main>
     <script src="/assets/prism.js"></script>
+    <script>
+      document.body.style.opacity = '1';
+    </script>
   </body>
 </html>

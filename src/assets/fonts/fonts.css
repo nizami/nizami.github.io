@@ -7,9 +7,11 @@
 }
 
 @font-face {
-  font-family: 'Accent Font';
+  font-family: 'Jura Light';
   font-style: normal;
   font-weight: 400;
   font-display: swap;
   src: url(Jura-Light.ttf) format('truetype');
+  /* src: url(PoiretOne-Regular.ttf) format('truetype'); */
+  /* src: url(OpenSans-Light.ttf) format('truetype'); */
 }
