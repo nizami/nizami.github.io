@@ -1,4 +1,5 @@
 import marked from 'marked';
+import readingTime from 'reading-time';
 import Vinyl from 'Vinyl';
 import { ContentMeta } from './content-meta';
 import { EjsTemplate } from './ejs-template';
@@ -6,11 +7,13 @@ import { EjsTemplate } from './ejs-template';
 export class MarkdownPostFile {
   private metadata: any;
   private content: string;
+  private markdown: string;
 
   constructor(private file: Vinyl) {
     const contentMeta = new ContentMeta(this.file.contents.toString());
     this.metadata = contentMeta.metadata();
-    this.content = marked(contentMeta.content());
+    this.markdown = contentMeta.content();
+    this.content = marked(this.markdown);
   }
 
   toHtml(): string {
@@ -32,6 +35,7 @@ export class MarkdownPostFile {
         day: 'numeric',
       }),
       link: `/${year}/${month}/${day}/${basename}.html`,
+      readingTime: readingTime(this.markdown).text,
     };
   }
 

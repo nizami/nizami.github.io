@@ -6,11 +6,11 @@
 }
 
 a {
-  color: #ffd369;
+  color: salmon;
   text-decoration: none;
 }
 a:visited {
-  color: #ffd369;
+  color: salmon;
 }
 a:hover {
   text-decoration: underline;
@@ -141,7 +141,6 @@ pre[class*='language-'] {
 
 nav > div {
   height: 100px;
-  margin-top: 100px;
   margin-bottom: 100px;
   display: flex;
   align-items: center;
@@ -206,4 +205,8 @@ a.text-link:hover {
 h1 a {
   padding-left: 0;
   padding-right: 0;
+}
+
+.post-meta > * {
+  margin-right: 30px;
 }

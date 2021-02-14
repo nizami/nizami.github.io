@@ -14,21 +14,17 @@ layout: default
     <p class="post-meta">
       <time
         class="dt-published"
-        datetime="2021-02-13T06:26:15+03:00"
+        datetime="<%= new Date(date + ' '+ time) %>"
         itemprop="datePublished"
       >
         <%= date %>
       </time>
       <!-- <a title="See all posts with tag 'Tag'" href="/tag/Tag.html">Tag</a> -->
+      <span><%= readingTime %></span>
     </p>
   </header>
 
   <div class="post-content e-content" itemprop="articleBody">
     <%- content %>
   </div>
-  <a
-    class="u-url"
-    href="/my_blog/update/2021/02/13/welcome-to-my_blog.html"
-    hidden
-  ></a>
 </article>
