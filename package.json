@@ -33,7 +33,7 @@
     "gulp-live-server": "^0.0.31",
     "gulp-rename": "^2.0.0",
     "marked": "^2.0.0",
-    "through2": "^2.0.5",
+    "through2": "^4.0.2",
     "ts-node": "^9.1.1",
     "typescript": "^4.1.5",
     "yaml": "^1.10.0"
