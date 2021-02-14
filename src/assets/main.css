@@ -164,7 +164,41 @@ nav i {
   background: #303a44;
 }
 
-nav > div > div ~ a,
-nav > div > div ~ i {
-  margin-left: 12px;
+nav > div > div ~ i,
+nav > div > div ~ a.about-link {
+  margin: 0 8px;
+}
+
+nav > div > div ~ a {
+  border: solid 1px transparent;
+  padding: 2px 8px;
+  transition-duration: 0.2s;
+  transition-property: none;
+}
+
+nav > div > div ~ a.about-link {
+  padding: 4px;
+}
+nav > div > div ~ a:hover {
+  border: solid 1px;
+  border-radius: 50%;
+  transition-property: border-radius, border-color;
+}
+
+article a {
+  padding: 2px 4px;
+  border: solid 1px transparent;
+  transition-duration: 0.2s;
+  transition-property: none;
+}
+
+article a:hover {
+  transition-property: all;
+  text-decoration: none;
+  padding-bottom: 4px;
+  /* border-top: 2px solid salmon; */
+  /* border-bottom: 2px solid salmon; */
+  border-bottom: solid 1px;
+  /* color: black; */
+  background-color: #fa80721c;
 }
