@@ -1,4 +1,6 @@
 import del from 'delete';
+import fs from 'fs';
+import glob from 'glob';
 import { dest, series, src, watch } from 'gulp';
 import gls from 'gulp-live-server';
 import rename from 'gulp-rename';
@@ -47,10 +49,28 @@ function posts() {
 }
 
 function pages() {
+  const postMetas = glob
+    .sync('src/posts/**/*.md')
+    .map(
+      (x) =>
+        new Vinyl({
+          cwd: '.',
+          base: '.',
+          path: x,
+          contents: fs.readFileSync(x),
+        })
+    )
+    .map((x) => new PostFile(x).metadata());
+
   return src(pagesGlob)
     .pipe(
-      through.obj((file, _, cb) => {
-        const output = new DefaultLayout(file.contents.toString()).rendered();
+      through.obj((file: Vinyl, _, cb) => {
+        const data = { posts: postMetas };
+
+        const output = new DefaultLayout(
+          file.contents.toString(),
+          data
+        ).rendered();
         file.contents = Buffer.from(output);
         cb(null, file);
       })

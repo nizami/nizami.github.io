@@ -13,9 +13,11 @@ export abstract class Layout {
       .readFileSync(`src/layouts/${this.name}.html`)
       .toString();
 
+    const contentRendered = mustache.render(this.content, this.data);
+
     return mustache.render(template, {
       ...this.data,
-      content: this.content,
+      content: contentRendered,
     });
   }
 }

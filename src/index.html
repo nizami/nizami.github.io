@@ -1,12 +1,6 @@
-<pre>
-    <code>
-        gulp.task('move-file',function(){
-            console.log("Move-files");
-            return gulp
-                .src(['./client-lib/*.js'])
-                .pipe(gulpCopy('./public', { prefix: 1 }))
-        
-        })
-        
-        </code>
-</pre>
+{{#posts}}
+<h2>
+  <a href="{{link}}">{{title}}</a>
+</h2>
+<p>{{paragraph}}</p>
+{{/posts}}
