@@ -1,7 +1,7 @@
 a,
 a:hover {
   text-decoration: none;
-  color: crimson;
+  color: black;
 }
 
 .wrapper {
@@ -75,8 +75,13 @@ nav > div {
   align-items: center;
   border-bottom: solid 1px #8080802b;
 }
+
 nav div > div {
   flex-grow: 1;
+}
+
+nav a {
+  margin-left: 24px;
 }
 
 nav img {
@@ -85,50 +90,10 @@ nav img {
   height: auto;
   filter: grayscale(1);
 }
-nav i {
-  display: block;
-  width: 4px;
-  height: 4px;
-  border-radius: 50%;
-  background: #303a44;
-}
 
-nav > div > div ~ i,
-nav > div > div ~ a.about-link {
-  margin: 0 8px;
-}
-
-nav > div > div ~ a {
-  border: solid 1px transparent;
-  padding: 2px 8px;
-  transition: 0.2s;
-}
-
-nav > div > div ~ a.about-link {
-  padding: 4px;
-}
-nav > div > div ~ a:hover {
-  border: solid 1px;
-  border-radius: 50%;
-}
-
-article a,
-a.text-link {
-  padding: 2px 4px;
+article a {
   padding-bottom: 4px;
-  border: solid 1px transparent;
-  transition: 0.2s;
-}
-
-article a:hover,
-a.text-link:hover {
   border-bottom: solid 1px;
-  background-color: #fa80721c;
-}
-
-h1 a {
-  padding-left: 0;
-  padding-right: 0;
 }
 
 .post-meta > * {
@@ -137,5 +102,4 @@ h1 a {
 
 body {
   font-size: 20px;
-  transition: 0.2s;
 }
