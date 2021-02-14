@@ -6,8 +6,9 @@ import gls from 'gulp-live-server';
 import rename from 'gulp-rename';
 import through from 'through2';
 import Vinyl from 'vinyl';
-import { DefaultLayout } from './default-layout';
-import { PostFile } from './post-file';
+import { ContentMeta } from './content-meta';
+import { EjsTemplate } from './ejs-template';
+import { MarkdownPostFile } from './markdown-post-file';
 
 const postsGlob = ['src/posts/*.md'];
 const pagesGlob = ['src/*.html'];
@@ -30,8 +31,7 @@ function posts() {
   return src(postsGlob)
     .pipe(
       through.obj((file: Vinyl, _, cb) => {
-        file.contents = new PostFile(file).toBuffer();
-
+        file.contents = new MarkdownPostFile(file).toBuffer();
         cb(null, file);
       })
     )
@@ -49,7 +49,7 @@ function posts() {
 }
 
 function pages() {
-  const postMetas = glob
+  const posts = glob
     .sync('src/posts/**/*.md')
     .sort()
     .map(
@@ -61,17 +61,19 @@ function pages() {
           contents: fs.readFileSync(x),
         })
     )
-    .map((x) => new PostFile(x).metadata());
+    .map((x) => new MarkdownPostFile(x))
+    .map((x) => x.data());
 
   return src(pagesGlob)
     .pipe(
       through.obj((file: Vinyl, _, cb) => {
-        const data = { posts: postMetas };
-
-        const output = new DefaultLayout(
-          file.contents.toString(),
-          data
-        ).rendered();
+        const contentMeta = new ContentMeta(file.contents.toString());
+        const metadata = contentMeta.metadata();
+        const content = contentMeta.content();
+        const output = new EjsTemplate(content, {
+          posts,
+          ...metadata,
+        }).render();
         file.contents = Buffer.from(output);
         cb(null, file);
       })
