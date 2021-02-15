@@ -30,8 +30,12 @@ jobs:
 
       - name: Deployment
         run: |
-          cp master/dist/ gh-pages/
+          echo root
+          ls
+          rsync master/dist/ gh-pages/
           cd gh-pages
+          echo gh-pages
+          ls
           git config user.name github-actions
           git config user.email github-actions@github.com
           git add .
