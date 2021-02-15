@@ -30,13 +30,8 @@ jobs:
 
       - name: Deployment
         run: |
-          echo ___root
-          ls
           rsync master/dist/ gh-pages/
           cd gh-pages
-          echo ___gh-pages
-          date > generated.txt
-          ls
           git config user.name github-actions
           git config user.email github-actions@github.com
           git add .
