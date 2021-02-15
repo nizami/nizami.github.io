@@ -36,7 +36,10 @@ function posts() {
   return src('src/posts/*.md')
     .pipe(
       through.obj((file: Vinyl, _, cb) => {
-        file.contents = new MarkdownPostFile(file).toBuffer();
+        const postFile = new MarkdownPostFile(file);
+        if (postFile.data().published === false)
+          file.contents = Buffer.from('');
+        else file.contents = postFile.toBuffer();
         cb(null, file);
       })
     )
@@ -67,7 +70,8 @@ function pages() {
         })
     )
     .map((x) => new MarkdownPostFile(x))
-    .map((x) => x.data());
+    .map((x) => x.data())
+    .filter((x) => x.published !== false);
 
   return src('src/*.html')
     .pipe(
