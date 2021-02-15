@@ -38,9 +38,15 @@ jobs:
       - name: ls gh-pages
         run: cd gh-pages && ls
 
+      - name: Copy dist folder from master to gh-pages
+        uses: canastro/copy-file-action@master
+        with:
+          source: master/dist/
+          target: gh-pages/
+          flags: '-r'
+
       - name: Deployment
         run: |
-          copy master/dist/ gh-pages/
           cd gh-pages
           ls
           git config user.name github-actions
