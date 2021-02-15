@@ -2,15 +2,15 @@ import del from 'delete';
 import fs from 'fs';
 import glob from 'glob';
 import { dest, series, src, watch } from 'gulp';
+import gulpIgnore from 'gulp-ignore';
 import gls from 'gulp-live-server';
 import rename from 'gulp-rename';
+import gulpSitemap from 'gulp-sitemap';
 import through from 'through2';
 import Vinyl from 'vinyl';
 import { ContentMeta } from './content-meta';
 import { EjsTemplate } from './ejs-template';
 import { MarkdownPostFile } from './markdown-post-file';
-var gulpSitemap = require('gulp-sitemap');
-
 function clean(cb) {
   return del(['dist'], cb);
 }
@@ -35,11 +35,16 @@ function rootFiles() {
 function posts() {
   return src('src/posts/*.md')
     .pipe(
-      through.obj((file: Vinyl, _, cb) => {
+      gulpIgnore.exclude((file) => {
         const postFile = new MarkdownPostFile(file);
-        if (postFile.data().published === false)
-          file.contents = Buffer.from('');
-        else file.contents = postFile.toBuffer();
+        return (
+          postFile.data().published === false && process.argv.includes('--prod')
+        );
+      })
+    )
+    .pipe(
+      through.obj((file: Vinyl, _, cb) => {
+        file.contents = new MarkdownPostFile(file).toBuffer();
         cb(null, file);
       })
     )
