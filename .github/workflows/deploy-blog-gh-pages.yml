@@ -16,6 +16,8 @@ jobs:
         with:
           ref: master
           path: master
+
+      - name: ls master
         run: ls
 
       - name: Build
@@ -32,7 +34,9 @@ jobs:
         with:
           path: gh-pages
           ref: gh-pages
-          run: ls
+
+      - name: ls gh-pages
+        run: ls
 
       - name: Deployment
         run: |
