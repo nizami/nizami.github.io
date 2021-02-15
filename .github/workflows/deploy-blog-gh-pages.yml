@@ -12,6 +12,8 @@ jobs:
       - uses: actions/checkout@v2
         with:
           path: master
+
+      - name: Build
         run: ls
         run: cd master
         run: npm ci
