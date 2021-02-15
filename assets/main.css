@@ -13,8 +13,8 @@ a:hover {
 }
 
 .svg-icon {
-  width: 16px;
-  height: 16px;
+  width: 20px;
+  height: 20px;
   fill: #828282;
 }
 
@@ -83,7 +83,7 @@ nav div > div {
   flex-grow: 1;
 }
 
-nav a {
+nav a:not(.text-link) {
   margin-left: 24px;
 }
 
@@ -109,4 +109,12 @@ body {
 
 .post-item {
   margin-bottom: 100px;
+}
+
+nav a > * {
+  border-radius: 50%;
+}
+
+.text-link {
+  font-family: 'Jura Light';
 }
