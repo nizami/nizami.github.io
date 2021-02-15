@@ -8,10 +8,10 @@ layout: default
     <p class="post-meta">
       <time
         class="dt-published"
-        datetime="<%= new Date(date + ' '+ time) %>"
+        datetime="<%= date.toISOString() %>"
         itemprop="datePublished"
       >
-        <%= date %>
+        <%= formattedDate %>
       </time>
       <!-- <a title="See all posts with tag 'Tag'" href="/tag/Tag.html">Tag</a> -->
       <span><%= readingTime %></span>

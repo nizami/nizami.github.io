@@ -9,11 +9,17 @@ import Vinyl from 'vinyl';
 import { ContentMeta } from './content-meta';
 import { EjsTemplate } from './ejs-template';
 import { MarkdownPostFile } from './markdown-post-file';
+var gulpSitemap = require('gulp-sitemap');
 
 function clean(cb) {
   return del(['dist'], cb);
 }
 
+function sitemap() {
+  return src('dist/**/*.html', { read: false })
+    .pipe(gulpSitemap({ siteUrl: 'https://nizami.dev' }))
+    .pipe(dest('dist'));
+}
 function assets() {
   return src('src/assets/**/*.*')
     .pipe(rename({ dirname: 'assets' }))
@@ -30,7 +36,9 @@ function posts() {
   return src('src/posts/*.md')
     .pipe(
       through.obj((file: Vinyl, _, cb) => {
-        file.contents = new MarkdownPostFile(file).toBuffer();
+        const postFile = new MarkdownPostFile(file);
+        file.stat.mtime = postFile.data().date;
+        file.contents = postFile.toBuffer();
         cb(null, file);
       })
     )
@@ -86,4 +94,4 @@ export default function watchTask() {
   watch('src/**', { ignoreInitial: false, delay: 200 }, build);
 }
 
-export const build = series(clean,rootFiles, assets, posts, pages);
+export const build = series(clean, rootFiles, assets, posts, pages, sitemap);
