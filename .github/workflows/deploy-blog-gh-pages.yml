@@ -14,26 +14,14 @@ jobs:
           ref: master
           path: master
 
-      - name: ls - 1
-        run: ls
-
-      - name: cd master
-        run: cd master && ls
-
-      - name: ls - 2
-        run: ls
-
       - name: Install dependencies
-        run: npm ci
-
-      - name: ls - 3
-        run: ls
+        run: cd master && npm ci
 
       - name: Build
-        run: npm run build
+        run: cd master npm run build
 
-      - name: ls - 4
-        run: ls
+      - name: ls
+        run: cd master && ls
 
       # - uses: actions/checkout@v2
       #   with:
