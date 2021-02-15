@@ -95,7 +95,7 @@ nav img {
   filter: grayscale(1);
 }
 
-article a {
+main a {
   padding-bottom: 4px;
   border-bottom: solid 1px;
 }
@@ -126,6 +126,9 @@ code:not([class*='language-']) {
   border-radius: 4px;
 }
 
-h2 {
-  margin: 40px 0 20px;
+article h2 {
+  margin: 40px 0 10px;
+}
+h2 a {
+  border: none;
 }

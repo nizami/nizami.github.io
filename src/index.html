@@ -4,7 +4,7 @@ layout: default
 ---
 
 <% posts.forEach(function(post){ %>
-<article class="post-item" itemscope itemtype="http://schema.org/BlogPosting">
+<div class="post-item">
   <header class="post-header">
     <h2 itemprop="name headline">
       <a href="<%= post.link %>"><%= post.title %></a>
@@ -29,6 +29,6 @@ layout: default
       <a href="<%= post.link %>">Read ...</a>
     </strong>
   </div>
-</article>
+</div>
 
 <% }); %>
