@@ -13,12 +13,11 @@ jobs:
         with:
           path: master
 
+      - name: Install dependencies
+        run: ls && cd master && ls && npm ci
+
       - name: Build
-        run: ls
-        run: cd master
-        run: npm ci
-        run: npm run build
-        run: ls
+        run: npm run build && ls
 
       # - uses: actions/checkout@v2
       #   with:
