@@ -15,7 +15,7 @@ jobs:
           path: master
 
       - name: Install dependencies
-        run: cd master && npm ci
+        run: cd master && npm i
 
       - name: Build
         run: cd master && npm run build
