@@ -10,22 +10,24 @@ import { ContentMeta } from './content-meta';
 import { EjsTemplate } from './ejs-template';
 import { MarkdownPostFile } from './markdown-post-file';
 
-const postsGlob = ['src/posts/*.md'];
-const pagesGlob = ['src/*.html'];
-const assetsGlob = ['src/assets/**/*.*'];
-
 function clean(cb) {
   return del(['dist'], cb);
 }
 
 function assets() {
-  return src(assetsGlob)
+  return src('src/assets/**/*.*')
     .pipe(rename({ dirname: 'assets' }))
     .pipe(dest('dist'));
 }
 
+function rootFiles() {
+  return src('src/root-files/**/*')
+    .pipe(rename({ dirname: '.' }))
+    .pipe(dest('dist'));
+}
+
 function posts() {
-  return src(postsGlob)
+  return src('src/posts/*.md')
     .pipe(
       through.obj((file: Vinyl, _, cb) => {
         file.contents = new MarkdownPostFile(file).toBuffer();
@@ -61,7 +63,7 @@ function pages() {
     .map((x) => new MarkdownPostFile(x))
     .map((x) => x.data());
 
-  return src(pagesGlob)
+  return src('src/*.html')
     .pipe(
       through.obj((file: Vinyl, _, cb) => {
         const contentMeta = new ContentMeta(file.contents.toString());
@@ -81,11 +83,7 @@ function pages() {
 export default function watchTask() {
   var server = gls.static('dist', 3000);
   server.start();
-  watch(
-    'src/**',
-    { ignoreInitial: false, delay: 200 },
-    series(clean, assets, posts, pages)
-  );
+  watch('src/**', { ignoreInitial: false, delay: 200 }, build);
 }
 
-export const build = series(clean, assets, posts, pages);
+export const build = series(clean,rootFiles, assets, posts, pages);
