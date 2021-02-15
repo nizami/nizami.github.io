@@ -4,7 +4,7 @@
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Posts | Nizami's Blog</title>
+  <title>XON - скромный, строгий, краткий | Nizami's Blog</title>
   <meta name="generator" content="MyBlog v3.8.7" />
   <meta property="og:title" content="Welcome to MyBlog!" />
   <meta property="og:locale" content="en_US" />
@@ -85,55 +85,45 @@
     <main class="page-content" aria-label="Content">
       <div class="wrapper">
 
-
-<article class="post-item" itemscope itemtype="http://schema.org/BlogPosting">
+<article itemscope itemtype="http://schema.org/BlogPosting">
   <header class="post-header">
-    <h2 itemprop="name headline">
-      <a href="/2021/02/14/test copy.html">XON - скромный, строгий, краткий</a>
-    </h2>
+    <h1 itemprop="name headline">XON - скромный, строгий, краткий</h1>
     <p class="post-meta">
       <time
         class="dt-published"
-        datetime="2021-02-13T06:26:15+03:00"
+        datetime="Sun Feb 14 2021 18:15:00 GMT+0000 (Coordinated Universal Time)"
         itemprop="datePublished"
       >
         Feb 14, 2021
       </time>
+      <!-- <a title="See all posts with tag 'Tag'" href="/tag/Tag.html">Tag</a> -->
       <span>1 min read</span>
     </p>
   </header>
 
   <div class="post-content e-content" itemprop="articleBody">
     <p>Хочу познакомить вас с языком программирования с ежевыми рукавицами. <a href="https://link">text</a></p>
+<!--more-->
+
+<pre><code class="language-js">  return src(pagesGlob)
+    .pipe(
+      through.obj((file: Vinyl, _, cb) =&gt; {
+        const contentMeta = new ContentMeta(file.contents.toString());
+        const metadata = contentMeta.metadata();
+        const content = contentMeta.content();
+        const output = new EjsTemplate(content, {
+          posts,
+          ...metadata,
+        }).render();
+        file.contents = Buffer.from(output);
+        cb(null, file);
+      })
+    )
+    .pipe(dest(&#39;dist&#39;));
+</code></pre>
 
   </div>
 </article>
-
-
-<article class="post-item" itemscope itemtype="http://schema.org/BlogPosting">
-  <header class="post-header">
-    <h2 itemprop="name headline">
-      <a href="/2021/02/14/test.html">XON - скромный, строгий, краткий</a>
-    </h2>
-    <p class="post-meta">
-      <time
-        class="dt-published"
-        datetime="2021-02-13T06:26:15+03:00"
-        itemprop="datePublished"
-      >
-        Feb 14, 2021
-      </time>
-      <span>1 min read</span>
-    </p>
-  </header>
-
-  <div class="post-content e-content" itemprop="articleBody">
-    <p>Хочу познакомить вас с языком программирования с ежевыми рукавицами. <a href="https://link">text</a></p>
-
-  </div>
-</article>
-
-
 </div>
     </main>
     <script src="/assets/prism.js"></script>
