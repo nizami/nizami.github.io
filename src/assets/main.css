@@ -66,9 +66,10 @@ code[class*='language-'] {
 }
 
 pre[class*='language-'] {
-  box-shadow: 0 6px 12px #121212;
+  box-shadow: 0 6px 12px #565656;
   background: #000000;
   font-size: 16px;
+  margin-bottom: 20px;
 }
 
 nav > div {
@@ -117,4 +118,14 @@ nav a > * {
 
 .text-link {
   font-family: 'Jura Light';
+}
+
+code:not([class*='language-']) {
+  background: #00000020;
+  padding: 2px 4px;
+  border-radius: 4px;
+}
+
+h2 {
+  margin: 40px 0 20px;
 }
