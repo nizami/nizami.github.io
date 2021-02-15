@@ -41,12 +41,6 @@ a:hover {
   margin-bottom: 30px;
 }
 
-.post-title {
-  font-size: 42px;
-  letter-spacing: -1px;
-  line-height: 1;
-}
-
 .post-content {
   margin-bottom: 30px;
 }
@@ -54,8 +48,17 @@ a:hover {
   font-size: 32px;
 }
 
-h1 {
+h1,
+h2 {
   font-family: 'Jura Light';
+  letter-spacing: -1px;
+  line-height: 1;
+}
+h1 {
+  font-size: 42px;
+}
+h2 {
+  font-size: 32px;
 }
 
 code[class*='language-'] {
@@ -102,4 +105,8 @@ article a {
 
 body {
   font-size: 20px;
+}
+
+.post-item {
+  margin-bottom: 100px;
 }
