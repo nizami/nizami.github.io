@@ -1,0 +1,17 @@
+@font-face {
+  font-family: 'Source Code Pro';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url(SourceCodePro-Regular.ttf) format('truetype');
+}
+
+@font-face {
+  font-family: 'Jura Light';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url(Jura-Light.ttf) format('truetype');
+  /* src: url(PoiretOne-Regular.ttf) format('truetype'); */
+  /* src: url(OpenSans-Light.ttf) format('truetype'); */
+}
