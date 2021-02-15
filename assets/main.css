@@ -1,7 +1,10 @@
+:root {
+  --accent-color: crimson;
+}
 a,
 a:hover {
   text-decoration: none;
-  color: black;
+  color: inherit;
 }
 
 .wrapper {
@@ -56,6 +59,7 @@ h2 {
 }
 h1 {
   font-size: 42px;
+  color: var(--accent-color);
 }
 h2 {
   font-size: 32px;
@@ -111,13 +115,31 @@ body {
 .post-item {
   margin-bottom: 100px;
 }
+.post-item > header > h2 {
+  color: var(--accent-color);
+}
 
 nav a > * {
   border-radius: 50%;
+  padding: 4px;
+  border: solid 1px transparent;
+  transition: 0.2s;
+}
+
+nav a > *:hover {
+  border: solid 1px var(--accent-color);
+  padding: 4px;
+  box-shadow: 0 0 20px 0px #ed143d3d;
 }
 
 .text-link {
   font-family: 'Jura Light';
+  transition: 0.2s;
+}
+
+.text-link:hover {
+  color: var(--accent-color);
+  text-shadow: 0 0 20px #ed143d3d;
 }
 
 code:not([class*='language-']) {
