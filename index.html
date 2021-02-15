@@ -51,8 +51,8 @@
   <link rel="stylesheet" href="/assets/main.css" />
 </head>
 
-  <!--  -->
-  <nav>
+  <body style="opacity: 0">
+    <nav>
   <div class="wrapper">
     <a href="/" title="Posts" class="text-link"> Posts </a>
     <div></div>
@@ -81,7 +81,6 @@
   </div>
 </nav>
 
-  <body style="opacity: 0">
     <main class="page-content" aria-label="Content">
       <div class="wrapper">
 
@@ -90,7 +89,7 @@
     </main>
     <script src="/assets/prism.js"></script>
     <script>
-      setTimeout(()=>document.body.style.opacity = '1');
+      setTimeout(() => (document.body.style.opacity = '1'));
     </script>
   </body>
 </html>
