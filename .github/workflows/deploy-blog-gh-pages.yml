@@ -18,7 +18,7 @@ jobs:
           path: master
 
       - name: ls master
-        run: ls
+        run: cd master && ls
 
       - name: Build
         run: |
@@ -36,7 +36,7 @@ jobs:
           ref: gh-pages
 
       - name: ls gh-pages
-        run: ls
+        run: cd gh-pages && ls
 
       - name: Deployment
         run: |
