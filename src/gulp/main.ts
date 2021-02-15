@@ -14,9 +14,6 @@ const postsGlob = ['src/posts/*.md'];
 const pagesGlob = ['src/*.html'];
 const assetsGlob = ['src/assets/**/*.*'];
 
-var server = gls.static('dist', 3000);
-server.start();
-
 function clean(cb) {
   return del(['dist'], cb);
 }
@@ -81,13 +78,14 @@ function pages() {
     .pipe(dest('dist'));
 }
 
-export default function () {
+export default function watchTask() {
+  var server = gls.static('dist', 3000);
+  server.start();
   watch(
     'src/**',
     { ignoreInitial: false, delay: 200 },
     series(clean, assets, posts, pages)
   );
-  watch('src/**', function (file) {
-    server.notify.apply(server, [file]);
-  });
 }
+
+export const build = series(clean, assets, posts, pages);
