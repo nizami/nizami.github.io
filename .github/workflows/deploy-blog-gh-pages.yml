@@ -16,17 +16,23 @@ jobs:
         with:
           ref: master
           path: master
-
-      - name: Install dependencies
-        run: cd master && npm ci
+        run: ls
 
       - name: Build
-        run: cd master && npm run build
+        run: |
+          cd master
+          npm ci
+          echo before build---
+          ls
+          npm run build
+          echo after build---
+          ls
 
       - uses: actions/checkout@v2
         with:
           path: gh-pages
           ref: gh-pages
+          run: ls
 
       - name: Deployment
         run: |
