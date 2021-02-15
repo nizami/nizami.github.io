@@ -11,6 +11,7 @@ import Vinyl from 'vinyl';
 import { ContentMeta } from './content-meta';
 import { EjsTemplate } from './ejs-template';
 import { MarkdownPostFile } from './markdown-post-file';
+
 function clean(cb) {
   return del(['dist'], cb);
 }
@@ -76,7 +77,7 @@ function pages() {
     )
     .map((x) => new MarkdownPostFile(x))
     .map((x) => x.data())
-    .filter((x) => x.published !== false);
+    .filter((x) => x.published !== false || !process.argv.includes('--prod'));
 
   return src('src/*.html')
     .pipe(

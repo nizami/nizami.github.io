@@ -27,7 +27,7 @@ export class MarkdownPostFile {
     const date = new Date(this.metadata.date + ' ' + this.metadata.time);
     return {
       ...this.metadata,
-      firstParagraph: this.content.split('<!--more-->')[0],
+      firstParagraph: this.content.split('<!-- more -->')[0],
       layout: 'post',
       date,
       formattedDate: new Date(this.metadata.date).toLocaleDateString('en-US', {
