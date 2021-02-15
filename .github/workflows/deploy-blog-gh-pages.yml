@@ -36,10 +36,10 @@ jobs:
           ref: gh-pages
 
       - name: Clean gh-pages directory
-        run: ls | grep -v .git | xargs rm -rf
-
-      - name: ls gh-pages
-        run: cd gh-pages && ls
+        run: |
+          cd gh-pages
+          ls | grep -v .git | xargs rm -rf
+          ls
 
       - name: Copy dist folder from master to gh-pages
         uses: canastro/copy-file-action@master
