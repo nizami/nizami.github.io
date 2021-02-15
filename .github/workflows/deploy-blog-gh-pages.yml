@@ -35,6 +35,9 @@ jobs:
           path: gh-pages
           ref: gh-pages
 
+      - name: Clean gh-pages directory
+        run: ls | grep -v .git | xargs rm -rf
+
       - name: ls gh-pages
         run: cd gh-pages && ls
 
@@ -51,6 +54,5 @@ jobs:
           ls
           git config user.name github-actions
           git config user.email github-actions@github.com
-          git add .
-          git diff --quiet && git diff --staged --quiet || git commit -m "Deployment"
+          git diff --quiet && git diff --staged --quiet || git commit -am "Deployment"
           git push
