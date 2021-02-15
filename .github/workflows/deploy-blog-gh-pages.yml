@@ -40,7 +40,7 @@ jobs:
 
       - name: Deployment
         run: |
-          rsync master/dist/ gh-pages/
+          copy master/dist/ gh-pages/
           cd gh-pages
           ls
           git config user.name github-actions
