@@ -36,9 +36,7 @@ function posts() {
   return src('src/posts/*.md')
     .pipe(
       through.obj((file: Vinyl, _, cb) => {
-        const postFile = new MarkdownPostFile(file);
-        file.stat.mtime = postFile.data().date;
-        file.contents = postFile.toBuffer();
+        file.contents = new MarkdownPostFile(file).toBuffer();
         cb(null, file);
       })
     )
