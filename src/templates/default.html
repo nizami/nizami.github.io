@@ -1,15 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
   <%- template('head')%>
-  <!--  -->
-  <%- template('nav'); %>
   <body style="opacity: 0">
+    <%- template('nav'); %>
     <main class="page-content" aria-label="Content">
       <div class="wrapper"><%- content %></div>
     </main>
     <script src="/assets/prism.js"></script>
     <script>
-      setTimeout(()=>document.body.style.opacity = '1');
+      setTimeout(() => (document.body.style.opacity = '1'));
     </script>
   </body>
 </html>
