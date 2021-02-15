@@ -17,11 +17,11 @@ jobs:
           ref: master
           path: master
 
-      # - name: Install dependencies
-      #   run: cd master && npm ci
+      - name: Install dependencies
+        run: cd master && npm ci
 
-      # - name: Build
-      #   run: cd master && npm run build
+      - name: Build
+        run: cd master && npm run build
 
       - uses: actions/checkout@v2
         with:
@@ -30,7 +30,10 @@ jobs:
 
       - name: Deployment
         run: |
-          ls
-          rsync master/package.json gh-pages/1313.json
+          cp master/dist/ gh-pages/
           cd gh-pages
-          ls
+          git config user.name github-actions
+          git config user.email github-actions@github.com
+          git add .
+          git commit -m "Deployment"
+          git push
