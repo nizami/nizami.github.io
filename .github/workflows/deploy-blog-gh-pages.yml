@@ -14,7 +14,7 @@ jobs:
           ref: master
           path: master
 
-      - name: Cancel running workflows 
+      - name: Cancel running workflows
         uses: n1hility/cancel-previous-runs@v2
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
