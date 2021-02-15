@@ -18,7 +18,7 @@ jobs:
         run: cd master && npm ci
 
       - name: Build
-        run: cd master npm run build
+        run: cd master && npm run build
 
       - name: ls
         run: cd master && ls
