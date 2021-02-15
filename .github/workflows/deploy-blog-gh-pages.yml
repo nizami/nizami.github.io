@@ -9,18 +9,15 @@ jobs:
     runs-on: ubuntu-latest
     name: deploy-blog
     steps:
-      #   uses: actions/setup-node@v2
-      #   with:
-      #     node-version: '12'
-      - name: Cancel running workflows
-        uses: everphone-gmbh/cancel-previous-workflows@v5
-        env:
-          GITHUB_TOKEN: ${{ github.token }}
-
       - uses: actions/checkout@v2
         with:
           ref: master
           path: master
+
+      - name: Cancel running workflows
+        uses: n1hility/cancel-previous-runs@v2
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Build
         run: |
