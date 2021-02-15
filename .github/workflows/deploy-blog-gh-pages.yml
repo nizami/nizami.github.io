@@ -41,7 +41,7 @@ jobs:
       - name: Copy dist folder from master to gh-pages
         uses: canastro/copy-file-action@master
         with:
-          source: master/dist/
+          source: master/dist/.
           target: gh-pages/
           flags: '-r'
 
