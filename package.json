@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "watch": "gulp -f src/gulp/gulpfile.ts --cwd .",
+    "start": "gulp -f src/gulp/gulpfile.ts --cwd .",
     "build": "gulp -f src/gulp/gulpfile.ts --cwd . build"
   },
   "repository": {
