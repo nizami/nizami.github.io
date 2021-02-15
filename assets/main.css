@@ -70,7 +70,7 @@ code[class*='language-'] {
 }
 
 pre[class*='language-'] {
-  box-shadow: 0 6px 12px #565656;
+  box-shadow: 0 6px 12px #00000080;
   background: #000000;
   font-size: 16px;
   margin-bottom: 20px;
@@ -109,6 +109,7 @@ main a {
 }
 
 body {
+  filter: drop-shadow(2px 4px 6px #00000040);
   font-size: 20px;
 }
 
