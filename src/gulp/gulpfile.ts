@@ -12,12 +12,17 @@ import { ContentMeta } from './content-meta';
 import { EjsTemplate } from './ejs-template';
 import { MarkdownPostFile } from './markdown-post-file';
 
+const postsGlob = `src/posts/**/*.@(post${
+  process.argv.includes('--prod') ? '' : '|draft'
+}).md`;
+
 function clean(cb) {
   return del(['dist'], cb);
 }
 
 function sitemap() {
   return src('dist/**/*.html', { read: false })
+    .pipe(gulpIgnore.exclude((file: Vinyl) => file.dirname.endsWith('404')))
     .pipe(gulpSitemap({ siteUrl: 'https://nizami.dev' }))
     .pipe(dest('dist'));
 }
@@ -34,15 +39,7 @@ function rootFiles() {
 }
 
 function posts() {
-  return src('src/posts/*.md')
-    .pipe(
-      gulpIgnore.exclude((file) => {
-        const postFile = new MarkdownPostFile(file);
-        return (
-          postFile.data().published === false && process.argv.includes('--prod')
-        );
-      })
-    )
+  return src(postsGlob)
     .pipe(
       through.obj((file: Vinyl, _, cb) => {
         file.contents = new MarkdownPostFile(file).toBuffer();
@@ -50,12 +47,12 @@ function posts() {
       })
     )
     .pipe(
-      rename((path) => {
-        const [, year, month, day, name] = path.basename.match(
-          /(\d{4})-(\d{2})-(\d{2})-(.+)/
+      rename((path, file) => {
+        const [, , , day, name] = file.path.match(
+          /\/(\d{4})\/(\d{2})\/(\d{2})-(.+)\.(post|draft)\.md$/
         );
-        path.dirname += `/${year}/${month}/${day}`;
-        path.basename = name;
+        path.dirname += `/${day}/${name}`;
+        path.basename = 'index';
         path.extname = '.html';
       })
     )
@@ -64,8 +61,9 @@ function posts() {
 
 function pages() {
   const posts = glob
-    .sync('src/posts/**/*.md')
+    .sync(postsGlob)
     .sort()
+    .reverse()
     .map(
       (x) =>
         new Vinyl({
@@ -76,8 +74,7 @@ function pages() {
         })
     )
     .map((x) => new MarkdownPostFile(x))
-    .map((x) => x.data())
-    .filter((x) => x.published !== false || !process.argv.includes('--prod'));
+    .map((x) => x.data());
 
   return src('src/*.html')
     .pipe(
@@ -91,6 +88,14 @@ function pages() {
         }).render();
         file.contents = Buffer.from(output);
         cb(null, file);
+      })
+    )
+    .pipe(
+      rename((path) => {
+        if (path.basename == 'index') return;
+        path.dirname += `/${path.basename}`;
+        path.basename = 'index';
+        path.extname = '.html';
       })
     )
     .pipe(dest('dist'));

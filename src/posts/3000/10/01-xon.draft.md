@@ -2,8 +2,6 @@
 published: false
 title: XON - лаконичный, строгий, скромный
 layout: post
-date: 2021-02-15
-time: 22:30
 location: Ogni, Dagestan, Russia
 tags: xon
 keywords:
