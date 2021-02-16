@@ -120,14 +120,6 @@ body {
   color: var(--accent-color);
 }
 
-.post-item .post-content {
-  opacity: 0.5;
-}
-
-.post-item .post-content {
-  opacity: 0.5;
-}
-
 nav a > * {
   border-radius: 50%;
   padding: 4px;
