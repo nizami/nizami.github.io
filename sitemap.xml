@@ -2,18 +2,18 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
     <url>
         
-        <loc>https://nizami.dev/about.html</loc>
+        <loc>https://nizami.dev/</loc>
     
         
-        <lastmod>2021-02-16T00:13:07.288Z</lastmod>
+        <lastmod>2021-02-16T18:22:45.910Z</lastmod>
     
     </url>
     <url>
         
-        <loc>https://nizami.dev/</loc>
+        <loc>https://nizami.dev/about/</loc>
     
         
-        <lastmod>2021-02-16T00:13:07.296Z</lastmod>
+        <lastmod>2021-02-16T18:22:45.902Z</lastmod>
     
     </url>
 </urlset>
