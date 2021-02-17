@@ -92,7 +92,7 @@ function pages() {
     )
     .pipe(
       rename((path) => {
-        if (path.basename == 'index') return;
+        if (['index', '404'].includes(path.basename)) return;
         path.dirname += `/${path.basename}`;
         path.basename = 'index';
         path.extname = '.html';
